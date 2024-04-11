@@ -1,19 +1,42 @@
 package com.ecommerce.productservices.Model_Entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-//@Getter and @Setter are annotation belonging to Lombok library, these can be used to automatically
-// generate getter and setter methods for fields in a Java class. This can save you a lot of time and
-// boilerplate code, especially if you have a lot of fields in your class.
-@Getter
-@Setter
+/**
+ * This class represents a product entity within the application domain.
+ * It encapsulates essential product information like its unique identifier, title, description,
+ * price, image URL, and category.
+ */
+@Data
 public class Product {
-    private Long id;
-    private String name;
-    private String description;
-    private Double price;
-    private String imageUrl;
-    private String category;
 
+    /**
+     * Unique identifier for the product within the system.
+     */
+    private Long id;
+
+    /**
+     * The name or title of the product.
+     */
+    private String title;
+
+    /**
+     * A detailed description of the product.
+     */
+    private String description;
+
+    /**
+     * The price of the product, typically represented as a double for decimal values.
+     */
+    private Double price;
+
+    /**
+     * The URL pointing to an image of the product.
+     */
+    private String image;
+
+    /**
+     * The category this product belongs to (e.g., electronics, clothing, etc.).
+     */
+    private String category;
 }
