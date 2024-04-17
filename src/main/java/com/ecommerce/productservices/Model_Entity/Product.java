@@ -1,5 +1,7 @@
 package com.ecommerce.productservices.Model_Entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.Data;
 
 /**
@@ -8,11 +10,13 @@ import lombok.Data;
  * price, image URL, and category.
  */
 @Data
+@Entity
 public class Product {
 
     /**
      * Unique identifier for the product within the system.
      */
+    @Id
     private Long id;
 
     /**
@@ -39,4 +43,5 @@ public class Product {
      * The category this product belongs to (e.g., electronics, clothing, etc.).
      */
     private String category;
+
 }
