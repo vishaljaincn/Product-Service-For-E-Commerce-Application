@@ -2,6 +2,7 @@ package com.ecommerce.productservices.Repository;
 
 import com.ecommerce.productservices.Model_Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
@@ -10,6 +11,7 @@ import java.util.Optional;
  * within the product services application. It extends JpaRepository, providing
  * essential CRUD operations and additional functionality for working with User data.
  */
+@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
     /**
