@@ -3,12 +3,14 @@ package com.ecommerce.productservices.Model_Entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import lombok.Data;
 
 /**
  * This class represents a Batch entity in the E-commerce application.
  * A batch typically refers to a group of learners enrolled in a specific course
  * or program under the guidance of an instructor.
  */
+@Data
 @Entity
 public class Batch {
 
