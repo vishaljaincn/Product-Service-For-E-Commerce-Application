@@ -15,7 +15,7 @@ public class NotFoundException extends Exception {
     /**
      * Constructor that sets a default error message for the exception.
      */
-    public NotFoundException() {
-        super("The product ID was not found."); // Informative message explaining the cause
+    public NotFoundException(String message) {
+        super(message); // Informative message explaining the cause
     }
 }

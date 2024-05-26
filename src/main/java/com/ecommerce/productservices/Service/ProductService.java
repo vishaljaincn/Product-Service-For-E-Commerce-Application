@@ -30,7 +30,7 @@ public class ProductService {
         // Removed debugging statement - not required for core functionality
 
         if (product == null) {
-            throw new NotFoundException(); // Throw an exception if the product is not found
+            throw new NotFoundException("product doesn't exist"); // Throw an exception if the product is not found
         }
 
         // No need to call the DB as we're using an external API (Commented out for clarity)

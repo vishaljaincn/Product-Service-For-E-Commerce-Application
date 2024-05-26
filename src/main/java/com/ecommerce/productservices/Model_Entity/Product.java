@@ -1,6 +1,8 @@
 package com.ecommerce.productservices.Model_Entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
@@ -17,6 +19,7 @@ public class Product {
      * Unique identifier for the product within the system.
      */
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
