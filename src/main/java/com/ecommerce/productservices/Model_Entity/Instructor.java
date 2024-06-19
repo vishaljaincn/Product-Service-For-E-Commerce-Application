@@ -2,6 +2,7 @@ package com.ecommerce.productservices.Model_Entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Value;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -13,7 +14,8 @@ import java.util.List;
  * Additionally, it captures information specific to instructors.
  */
 @Entity
-@Data // Lombok annotation for generating getters, setters, equals, hashCode, toString (optional for some IDEs)
+@Data
+// Lombok annotation for generating getters, setters, equals, hashCode, toString (optional for some IDEs)
 public class Instructor extends User {
 
     /**
@@ -40,7 +42,7 @@ public class Instructor extends User {
      * along with the instructor data, avoiding an additional database query. This can be beneficial
      * for performance when you frequently need both the instructor and their associated batches together.
      */
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "instructor", cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "instructor", cascade = CascadeType.REMOVE)
     @Fetch(FetchMode.JOIN)
     private List<Batch> batches; // Use plural "batches" for consistency
 }

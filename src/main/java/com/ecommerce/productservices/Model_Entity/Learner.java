@@ -1,6 +1,7 @@
 package com.ecommerce.productservices.Model_Entity;
 
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
