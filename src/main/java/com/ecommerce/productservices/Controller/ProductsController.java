@@ -3,14 +3,14 @@ package com.ecommerce.productservices.Controller;
 import com.ecommerce.productservices.DTO_s.GetProductDto;
 import com.ecommerce.productservices.Exceptions.NotFoundException;
 import com.ecommerce.productservices.Model_Entity.Product;
-import com.ecommerce.productservices.Service.ProductService;
 import com.ecommerce.productservices.Service.ProductsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
-import java.util.ArrayList;
 
 /**
  * This class acts as a REST API controller for managing products within the e-commerce application.
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 @RestController
 @RequestMapping("/productsdb")  // Base URI for all product-related requests
 public class ProductsController {
-
+    private final Logger logger = LoggerFactory.getLogger(ProductsController.class);
     private final ProductsService productsService;
 
     /**
@@ -67,6 +67,7 @@ public class ProductsController {
      */
     @GetMapping("/getallproducts")
     public @ResponseBody List<GetProductDto> getAllProducts() {
+        logger.info("hi bro");
         return productsService.getAllProducts();
     }
 
@@ -127,7 +128,7 @@ public class ProductsController {
             Product product = new Product();
             product.setTitle("Random Product " + (i + 1));
             product.setDescription("Description for random product " + (i + 1));
-            product.setPrice(Double.valueOf(i*10));
+            product.setPrice(Double.valueOf(i * 10));
             product.setImage("http://example.com/images/random-product-" + (i + 1) + ".jpg");
             product.setCategory("Category " + (i % 5 + 1));  // Distributing products into 5 categories
             randomProducts.add(product);

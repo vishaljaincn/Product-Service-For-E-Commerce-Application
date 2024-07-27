@@ -5,6 +5,8 @@ import com.ecommerce.productservices.DTO_s.GetProductDto;
 import com.ecommerce.productservices.Exceptions.NotFoundException;
 import com.ecommerce.productservices.Model_Entity.Product;
 import com.ecommerce.productservices.Service.ProductService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +23,7 @@ public class ProductController {
     private ProductService productService;  -> This can also be used, but spring suggests us to use below
                                                Constructor based injection
 */
-
+    private final Logger logger = LoggerFactory.getLogger(ProductController.class);
     private final ProductService productService;
 
     /**
@@ -49,6 +51,7 @@ public class ProductController {
             @PathVariable("id") Long id,
             @PathVariable("name") String name,
             @RequestParam("category") String category) {
+        logger.info("just to check log functionality");
         return "Here's your product " + id + " " + name + " " + category;
     }
 

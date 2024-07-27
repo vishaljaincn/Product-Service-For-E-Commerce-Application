@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.Value;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.context.annotation.Lazy;
 
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class Instructor extends User {
      * along with the instructor data, avoiding an additional database query. This can be beneficial
      * for performance when you frequently need both the instructor and their associated batches together.
      */
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "instructor", cascade = CascadeType.REMOVE)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "instructor", cascade = CascadeType.REMOVE)
     @Fetch(FetchMode.JOIN)
     private List<Batch> batches; // Use plural "batches" for consistency
 }

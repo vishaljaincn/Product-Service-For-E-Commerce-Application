@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
+import org.hibernate.annotations.Fetch;
 
 /**
  * This class represents a product entity within the application domain.
@@ -35,6 +36,7 @@ public class Product {
     /**
      * The price of the product, typically represented as a double for decimal values.
      */
+
     private Double price;
 
     /**

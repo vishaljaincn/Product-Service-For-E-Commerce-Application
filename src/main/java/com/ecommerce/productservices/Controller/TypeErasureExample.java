@@ -12,6 +12,7 @@ public class TypeErasureExample {
         List<Integer> integerList = new ArrayList<>();
         List<GetProductDto> productList = new ArrayList<>();
         int[] primitiveArray = new int[]{1, 2, 3};
+        
 
         // Print class names to demonstrate type erasure
         System.out.println("Integer List class: " + integerList.getClass().getName());  // Output: java.util.ArrayList

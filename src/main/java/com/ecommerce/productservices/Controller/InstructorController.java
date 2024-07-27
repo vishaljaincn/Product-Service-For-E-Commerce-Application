@@ -4,6 +4,7 @@ import com.ecommerce.productservices.DTO_s.CreateInstructorDto;
 import com.ecommerce.productservices.DTO_s.GetInstructorDto;
 import com.ecommerce.productservices.Model_Entity.Instructor;
 import com.ecommerce.productservices.Service.InstructorService;
+import com.ecommerce.productservices.Service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,14 +19,16 @@ import java.util.UUID;
 public class InstructorController {
 
     private final InstructorService instructorService;
+    private final ProductService productService;
 
     /**
      * Constructor that injects the InstructorService dependency.
      *
      * @param instructorService The service responsible for Instructor logic.
      */
-    public InstructorController(InstructorService instructorService) {
+    public InstructorController(InstructorService instructorService, ProductService productService) {
         this.instructorService = instructorService;
+        this.productService = productService;
     }
 
     /**
@@ -70,5 +73,11 @@ public class InstructorController {
     public List<GetInstructorDto> getInstructorByUUID(@RequestBody List<UUID> uuid) {
         // Delegate logic to service layer and return the retrieved instructors
         return instructorService.getInstructorByIds(uuid);
+    }
+
+    @PostMapping("/add")
+    public  void addInstructorandbatch() {
+        instructorService.insertSampleInstructors();
+        instructorService.insertSampleBatches();
     }
 }

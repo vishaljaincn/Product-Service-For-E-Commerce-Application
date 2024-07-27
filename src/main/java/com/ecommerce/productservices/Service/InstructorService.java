@@ -3,6 +3,7 @@ package com.ecommerce.productservices.Service;
 import com.ecommerce.productservices.DTO_s.GetInstructorDto;
 import com.ecommerce.productservices.Model_Entity.Batch;
 import com.ecommerce.productservices.Model_Entity.Instructor;
+import com.ecommerce.productservices.Repository.BatchRepository;
 import com.ecommerce.productservices.Repository.InstructorRepository;
 import org.springframework.stereotype.Service;
 
@@ -19,14 +20,16 @@ import java.util.UUID;
 public class InstructorService {
 
     private final InstructorRepository instructorRepository;
+    private final BatchRepository batchRepository;
 
     /**
      * Constructor that injects the InstructorRepository dependency.
      *
      * @param instructorRepository The repository for interacting with Instructor entities.
      */
-    public InstructorService(InstructorRepository instructorRepository) {
+    public InstructorService(InstructorRepository instructorRepository, BatchRepository batchRepository) {
         this.instructorRepository = instructorRepository;
+        this.batchRepository = batchRepository;
     }
 
     /**
@@ -124,5 +127,45 @@ public class InstructorService {
 
         // Return the list of GetInstructorDto objects containing details for instructors with the provided name.
         return instructorDtos;
+    }
+
+    public void insertSampleInstructors() {
+        List<Instructor> instructors = new ArrayList<>();
+
+        for (int i = 1; i <= 10; i++) {
+            Instructor instructor = new Instructor();
+            instructor.setName("Instructor " + i);
+            instructor.setEmail("instructor" + i + "@example.com");
+            instructor.setSalary(50000.0 + (i * 1000));
+            instructor.setSkill("Skill " + i);
+
+            instructors.add(instructor);
+        }
+
+        instructorRepository.saveAll(instructors);
+    }
+
+    public void insertSampleBatches() {
+        List<Batch> batches = new ArrayList<>();
+
+        // Retrieve a list of instructors to associate with batches
+        List<Instructor> instructors = instructorRepository.findAll();
+
+        for (int i = 1; i <= 10; i++) {
+            Batch batch = new Batch();
+            batch.setId(i);
+            batch.setName("Batch " + i);
+            batch.setStrength(20 + i);
+
+            // Randomly assign an instructor to each batch
+            if (!instructors.isEmpty()) {
+                Instructor instructor = instructors.get(i % instructors.size());
+                batch.setInstructor(instructor);
+            }
+
+            batches.add(batch);
+        }
+
+        batchRepository.saveAll(batches);
     }
 }
