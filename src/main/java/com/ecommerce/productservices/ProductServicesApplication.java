@@ -4,6 +4,7 @@ package com.ecommerce.productservices;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 /**
  * This class serves as the entry point for the product services application.
@@ -13,6 +14,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * and property binding features provided by Spring Boot.
  */
 @SpringBootApplication
+@EnableAsync
 public class ProductServicesApplication {
 
     public static void main(String[] args) {

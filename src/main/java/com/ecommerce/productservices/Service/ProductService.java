@@ -3,11 +3,13 @@ package com.ecommerce.productservices.Service;
 import com.ecommerce.productservices.DTO_s.GetProductDto;
 import com.ecommerce.productservices.Exceptions.NotFoundException;
 import com.ecommerce.productservices.Model_Entity.Product;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 public class ProductService {
@@ -20,8 +22,9 @@ public class ProductService {
      * @return A `GetProductDto` object containing product details.
      * @throws NotFoundException If the product with the given ID is not found in the external API.
      */
-    public GetProductDto getProductById(Long id) throws NotFoundException {
-
+    @Async
+    public CompletableFuture<GetProductDto> getProductById(Long id) throws NotFoundException {
+        System.out.println(Thread.currentThread().getName());
         RestTemplate restTemplate = new RestTemplate(); // Create a RestTemplate instance for making HTTP requests
 
         String url = "https://fakestoreapi.com/products/" + id; // Construct the API endpoint URL with the product ID
@@ -37,7 +40,7 @@ public class ProductService {
         // Call the Fake Store API to retrieve product details.
         // https://fakestoreapi.com/products/15
 
-        return convertToDto(product); // Convert the retrieved product to a GetProductDto (potentially lighter weight for response data)
+        return CompletableFuture.completedFuture(convertToDto(product)); // Convert the retrieved product to a GetProductDto (potentially lighter weight for response data)
     }
 
     /**
