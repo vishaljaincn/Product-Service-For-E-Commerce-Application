@@ -4,6 +4,8 @@ import com.ecommerce.productservices.DTO_s.GetProductDto;
 import com.ecommerce.productservices.Exceptions.NotFoundException;
 import com.ecommerce.productservices.Model_Entity.Product;
 import com.ecommerce.productservices.Service.ProductsService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -40,13 +42,18 @@ public class ProductsController {
      * @param category The category of the product. (Provided as a request parameter)
      * @return A string concatenating the provided information.
      */
-    @GetMapping("/displaydummyproduct/{id}/{name}")  // Notice proper indentation
-    public String display_the_product_with_id_name_category_just_to_know_how_PathVariable_works(
+    @GetMapping("/displaydummyproduct/{id}/{name}")
+    public String displayProduct(
             @PathVariable("id") Long id,
             @PathVariable("name") String name,
-            @RequestParam("category") String category) {
+            @RequestParam("category") String category,
+            HttpServletRequest httpServletRequest) {
+        // Add additional logging
+        System.out.println("Received request with ID: " + id + " Name: " + name + " Category: " + category);
+        System.out.println("Client IP Address: " + httpServletRequest.getRemoteAddr());
         return "Here's your product " + id + " " + name + " " + category;
     }
+
 
     /**
      * Retrieves a product by its unique identifier.

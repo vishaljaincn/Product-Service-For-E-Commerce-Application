@@ -47,16 +47,16 @@ public class ProductController {
      * @param category The category of the product. (Provided as a request parameter)
      * @return A string concatenating the provided information.
      */
-    @GetMapping("/displaydummyproduct/{id}/{name}")  // Notice proper indentation
-    // @PathVariable extracts required variables from the URI path. You can use multiple Path Variables.
-    // @RequestParam allows capturing user input through request parameters.
-    public String display_the_product_with_id_name_category_just_to_know_how_PathVariable_works(
-            @PathVariable("id") Long id,
-            @PathVariable("name") String name,
-            @RequestParam("category") String category) {
-        logger.info("just to check log functionality");
-        return "Here's your product " + id + " " + name + " " + category;
-    }
+//    @GetMapping("/displaydummyproduct/{id}/{name}")  // Notice proper indentation
+//    // @PathVariable extracts required variables from the URI path. You can use multiple Path Variables.
+//    // @RequestParam allows capturing user input through request parameters.
+//    public String display_the_product_with_id_name_category_just_to_know_how_PathVariable_works(
+//            @PathVariable("id") Long id,
+//            @PathVariable("name") String name,
+//            @RequestParam("category") String category) {
+//        logger.info("just to check log functionality");
+//        return "Here's your product " + id + " " + name + " " + category;
+//    }
 
     /**
      * Retrieves a product by its unique identifier.
