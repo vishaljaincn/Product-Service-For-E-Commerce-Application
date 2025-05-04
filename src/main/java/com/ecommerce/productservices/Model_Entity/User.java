@@ -20,7 +20,8 @@ import java.util.UUID;
 //@MappedSuperclass // Not used here as inheritance is used
 @Getter // Lombok annotation for generating getters for all fields
 @Setter // Lombok annotation for generating setters for all fields
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.JOINED)// Inheritance strategy
+@MappedSuperclass
 public class User {
 
     /**

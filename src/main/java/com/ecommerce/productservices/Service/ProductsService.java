@@ -4,6 +4,8 @@ import com.ecommerce.productservices.DTO_s.GetProductDto;
 import com.ecommerce.productservices.Exceptions.NotFoundException;
 import com.ecommerce.productservices.Model_Entity.Product;
 import com.ecommerce.productservices.Repository.ProductsRepository;
+import jakarta.persistence.EntityManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -14,6 +16,9 @@ import java.util.Map;
 public class ProductsService {
 
     private final ProductsRepository productsRepository;
+
+    @Autowired
+    EntityManager entityManager;
 
     /**
      * Constructor to inject ProductsRepository dependency.
@@ -48,6 +53,14 @@ public class ProductsService {
         for (Product product : products) {
             productDtos.add(convertToDto(product));
         }
+        if (true) {
+            try {
+                throw new NotFoundException("hi");
+            } catch (NotFoundException e) {
+                System.out.println("hi");
+            }
+
+        }
         return productDtos;
     }
 
@@ -64,7 +77,7 @@ public class ProductsService {
     /**
      * Updates an existing product based on the provided product information.
      *
-     * @param id            The unique identifier of the product to update.
+     * @param id             The unique identifier of the product to update.
      * @param productDetails A Product object representing the updated product information.
      * @return The updated Product object.
      * @throws NotFoundException If the product with the provided ID is not found.

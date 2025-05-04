@@ -5,7 +5,6 @@ import com.ecommerce.productservices.Exceptions.NotFoundException;
 import com.ecommerce.productservices.Model_Entity.Product;
 import com.ecommerce.productservices.Service.ProductsService;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
@@ -37,21 +36,21 @@ public class ProductsController {
      * This endpoint demonstrates how to access path variables and request parameters from the URI.
      * It's for illustrative purposes and might not be part of a real product API.
      *
-     * @param id       The unique identifier of the product to retrieve.
-     * @param name     The name of the product.
-     * @param category The category of the product. (Provided as a request parameter)
+     * @param id   The unique identifier of the product to retrieve.
+     * @param name The name of the product.
      * @return A string concatenating the provided information.
      */
     @GetMapping("/displaydummyproduct/{id}/{name}")
     public String displayProduct(
             @PathVariable("id") Long id,
             @PathVariable("name") String name,
-            @RequestParam("category") String category,
             HttpServletRequest httpServletRequest) {
         // Add additional logging
-        System.out.println("Received request with ID: " + id + " Name: " + name + " Category: " + category);
+        logger.info("hi vishal ");
+        System.out.println("Received request with ID: " + id + " Name: " + name + " Category: ");
         System.out.println("Client IP Address: " + httpServletRequest.getRemoteAddr());
-        return "Here's your product " + id + " " + name + " " + category;
+        return "Here's your product " + id + " " + name + " ";
+
     }
 
 
@@ -73,7 +72,7 @@ public class ProductsController {
      * @return A list of GetProductDto objects representing all products.
      */
     @GetMapping("/getallproducts")
-    public @ResponseBody List<GetProductDto> getAllProducts() {
+    public @ResponseBody List<GetProductDto> getAllProducts() throws NotFoundException {
         logger.info("hi bro");
         return productsService.getAllProducts();
     }

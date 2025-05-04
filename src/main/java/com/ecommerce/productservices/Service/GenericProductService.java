@@ -2,6 +2,7 @@ package com.ecommerce.productservices.Service;
 
 import com.ecommerce.productservices.Model_Entity.GenericProduct;
 import com.ecommerce.productservices.Repository.GenericProductRepository;
+import org.springframework.context.annotation.Scope;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;

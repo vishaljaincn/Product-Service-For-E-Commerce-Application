@@ -2,6 +2,7 @@ package com.ecommerce.productservices.Repository;
 
 import com.ecommerce.productservices.Model_Entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -24,4 +25,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
      */
     Optional<User> findByName(String name);
 
+    @Query("SELECT u FROM ecommerce_user u WHERE u.name = :username")
+    Optional<User> findByUsernameInJpql(String username);
 }

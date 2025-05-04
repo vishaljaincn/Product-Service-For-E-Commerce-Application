@@ -2,6 +2,7 @@ package com.ecommerce.productservices.Repository;
 
 import com.ecommerce.productservices.Model_Entity.Instructor;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,6 +26,8 @@ public interface InstructorRepository extends JpaRepository<Instructor, UUID> {
      * @return A list of Instructors matching the provided name,
      * or an empty list if no matches are found.
      */
+    @Query("SELECT i FROM Instructor i WHERE i.name = :name")
     List<Instructor> findByName(String name);
+
 
 }

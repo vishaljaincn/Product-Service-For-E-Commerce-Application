@@ -2,10 +2,8 @@ package com.ecommerce.productservices.Model_Entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Value;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
-import org.springframework.context.annotation.Lazy;
 
 import java.util.List;
 
@@ -16,6 +14,7 @@ import java.util.List;
  */
 @Entity
 @Data
+@Table(name = "instructor") // Table name in the database
 // Lombok annotation for generating getters, setters, equals, hashCode, toString (optional for some IDEs)
 public class Instructor extends User {
 
@@ -45,5 +44,6 @@ public class Instructor extends User {
      */
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "instructor", cascade = CascadeType.REMOVE)
     @Fetch(FetchMode.JOIN)
-    private List<Batch> batches; // Use plural "batches" for consistency
+    private List<Batch> batches; // U
+    // se plural "batches" for consistency
 }

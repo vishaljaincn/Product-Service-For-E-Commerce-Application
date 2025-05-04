@@ -5,10 +5,12 @@ import com.ecommerce.productservices.DTO_s.GetInstructorDto;
 import com.ecommerce.productservices.Model_Entity.Instructor;
 import com.ecommerce.productservices.Service.InstructorService;
 import com.ecommerce.productservices.Service.ProductService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 /**
  * This class defines a RESTful API controller for managing Instructors.
@@ -20,7 +22,7 @@ public class InstructorController {
 
     private final InstructorService instructorService;
     private final ProductService productService;
-
+    private static final Logger logger=Logger.getLogger(InstructorController.class.getName());
     /**
      * Constructor that injects the InstructorService dependency.
      *
